@@ -1,7 +1,17 @@
+/**
+ * @file
+ * @brief power operator
+ * @authors Pavlov Ilya
+ */
+
 #pragma once
 
 #include "../../include/PluginsLoader.h"
 
+ /**
+ * Operator ^
+ * @see IBinaryOperator
+ */
 class Pow : public IBinaryOperator {
 public:
   std::string Name() const noexcept override;

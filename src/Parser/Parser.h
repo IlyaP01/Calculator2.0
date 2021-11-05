@@ -1,3 +1,11 @@
+/**
+ * @file
+ * @brief Parser class header file
+ * @authors Pavlov Ilya
+ *
+ * Contains Parser and Token classes declarationss
+ */
+
 #pragma once
 
 #include <string>
@@ -8,8 +16,14 @@
 #include "../include/IOperator.h"
 #include "../include/PluginsLoader.h"
 
+/**
+ * Just token  
+ */
 class Token {
 public:
+  /**
+   * Types of token 
+   */
   enum class Type {
     NUMBER,
     BIN_OPERATOR,
@@ -22,6 +36,11 @@ public:
   std::variant<std::monostate, double, IOperation*> val;
 };
 
+/**
+ * @brief Parser class
+ *
+ * Class for splitting input expression into tokens
+ */
 class Parser {
 private:
   const std::string& expr;
@@ -30,8 +49,27 @@ private:
   bool end = false;
   const PluginsLoader& loader;
 public:
+  /**
+   * Constructor
+   * @param[in] expression expression to split
+   * @param[in] loader plugins loader with information about loaded operations
+   */
   Parser(const std::string& expression, const PluginsLoader& loader);
+
+  /**
+   * Function for getting tokens (works like output iterator) 
+   * @return next token
+   */
   Token* GetNextToken();
-  bool IsEnd();
+
+  /**
+   * End of tokens flag
+   * @return true if there are no more tokens else false
+   */
+  bool IsEnd() const noexcept;
+  
+  /**
+   * Destructor 
+   */
   ~Parser();
 };

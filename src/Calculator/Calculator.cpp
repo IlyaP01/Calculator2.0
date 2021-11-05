@@ -121,10 +121,17 @@ static int _comparePriority(const Token* t1, const Token* t2) {
   return -1;
 }
 
+/**
+ * Constructor
+ */
 Calculator::Calculator() {
   loader.ScanDirectory("plugins");
 }
 
+/**
+ * Calculate expression
+ * @return result of calculation
+ */
 double Calculator::Calculate(const std::string& expression) {
   Parser parser(expression, loader);
   std::stack<Token*> opStack;

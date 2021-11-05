@@ -1,7 +1,20 @@
+/**
+ * @file
+ * @brief Parser class source file
+ * @authors Pavlov Ilya
+ *
+ * Contains Parser definition
+ */
+
 #include "Parser.h"
 #include <assert.h>
 #include <stdexcept>
 
+ /**
+  * Constructor
+  * @param[in] expression expression to split
+  * @param[in] loader plugins loader with information about loaded operations
+  */
 Parser::Parser(const std::string& expression, const PluginsLoader& loader) : expr(expression), loader(loader) {}
 
 static void _skipSpaces(const std::string& expr, size_t* index) {
@@ -20,6 +33,10 @@ static size_t _findNameLength(const std::string& expr, size_t index) {
   return index - startIndex;
 }
 
+/**
+ * Function for getting tokens (works like output iterator)
+ * @return next token
+ */
 Token* Parser::GetNextToken() {
   _skipSpaces(expr, &curIndex);
   assert(curIndex < expr.length());
@@ -100,10 +117,17 @@ Token* Parser::GetNextToken() {
   return tokens.back();
 }
 
-bool Parser::IsEnd() {
+/**
+ * End of tokens flag
+ * @return true if there are no more tokens else false
+ */
+bool Parser::IsEnd() const noexcept{
   return end;
 }
 
+/**
+ * Destructor
+ */
 Parser::~Parser() {
   for (Token* t : tokens)
     delete t;
