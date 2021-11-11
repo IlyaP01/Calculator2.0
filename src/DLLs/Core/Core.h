@@ -59,17 +59,6 @@ public:
 };
 
 /**
- * Operator unary -
- * @see IUnaryOperator
- */
-class UnaryMinus : public IUnaryOperator {
-public:
-  std::string Name() const noexcept override;
-  AffixType GetAffixType() const noexcept override;
-  double operator()(double val) const noexcept override;
-};
-
-/**
  * Operator ,
  * @see IUnaryOperator
  */

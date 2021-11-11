@@ -64,18 +64,6 @@ int Div::Priority() const noexcept {
   return MUL_PRIORITY;
 }
 
-std::string UnaryMinus::Name() const noexcept {
-  return "-";
-}
-
-IUnaryOperator::AffixType UnaryMinus::GetAffixType() const noexcept {
-  return AffixType::PREFIX;
-}
-
-double UnaryMinus::operator()(double val) const noexcept {
-  return -val;
-}
-
 std::string Comma::Name() const noexcept {
   return ",";
 }
@@ -94,6 +82,5 @@ void on_load(const OperationsRegistrar& reg) {
   reg.AddBinaryOperator(new Minus);
   reg.AddBinaryOperator(new Mul);
   reg.AddBinaryOperator(new Div);
-  reg.AddUnaryOperator(new UnaryMinus);
   reg.AddUnaryOperator(new Comma);
 }

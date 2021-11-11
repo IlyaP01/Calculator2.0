@@ -48,6 +48,10 @@ private:
   size_t curIndex = 0;
   bool end = false;
   const PluginsLoader& loader;
+
+  void HandleOperation(Token* newToken);
+  void HandleNumber(Token* newToken);
+  void SkipSpaces();
 public:
   /**
    * Constructor
